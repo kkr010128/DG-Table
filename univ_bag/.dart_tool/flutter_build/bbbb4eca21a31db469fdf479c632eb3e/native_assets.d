@@ -1,1 +1,0 @@
- /Users/kkr010128/Desktop/TimeTable/univ_bag/.dart_tool/flutter_build/bbbb4eca21a31db469fdf479c632eb3e/native_assets.yaml: 
