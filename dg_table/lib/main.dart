@@ -53,7 +53,7 @@ class _MainPageState extends State<MainPage> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/images/mv_1.svg',
+              'assets/images/nv_1.svg',
               color: _selectedIndex == 0 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
               width: 24,
               height: 24,
@@ -62,7 +62,7 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/images/mv_2.svg',
+              'assets/images/nv_2.svg',
               color: _selectedIndex == 1 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
               width: 24,
               height: 24,
@@ -71,7 +71,7 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/images/mv_3.svg',
+              'assets/images/nv_3.svg',
               color: _selectedIndex == 2 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
               width: 24,
               height: 24,
@@ -80,7 +80,7 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/images/mv_4.svg',
+              'assets/images/nv_4.svg',
               color: _selectedIndex == 3 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
               width: 24,
               height: 24,
@@ -89,7 +89,7 @@ class _MainPageState extends State<MainPage> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/images/mv_5.svg',
+              'assets/images/nv_5.svg',
               color: _selectedIndex == 4 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
               width: 24,
               height: 24,
