@@ -1,10 +1,10 @@
 name: dg_table
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=3.4.4 <4.0.0'
+  sdk: ">=3.4.4 <4.0.0"
 
 dependencies:
   flutter:
@@ -13,7 +13,18 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_svg: ^1.0.0
 
 flutter:
-  uses-material-design: true
+  assets:
+    - assets/fonts/HancomMalangMalang-Bold.ttf
+    - assets/images/nv_1.svg
+    - assets/images/nv_2.svg
+    - assets/images/nv_3.svg
+    - assets/images/nv_4.svg
+    - assets/images/nv_5.svg
+
+  fonts:
+    - family: MalangBold
+      fonts:
+        - asset: assets/fonts/HancomMalangMalang-Bold.ttf
