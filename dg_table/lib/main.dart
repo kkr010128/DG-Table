@@ -49,6 +49,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: UnibagAppBar(),
       body: _pages[_selectedIndex],  // 선택된 페이지를 body에 표시
       bottomNavigationBar: UniBagNavigationBar(
