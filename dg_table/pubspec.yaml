@@ -18,11 +18,11 @@ dev_dependencies:
 flutter:
   assets:
     - assets/fonts/HancomMalangMalang-Bold.ttf
-    - assets/images/nv_1.svg
-    - assets/images/nv_2.svg
-    - assets/images/nv_3.svg
-    - assets/images/nv_4.svg
-    - assets/images/nv_5.svg
+    - assets/icon/nv_1.svg
+    - assets/icon/nv_2.svg
+    - assets/icon/nv_3.svg
+    - assets/icon/nv_4.svg
+    - assets/icon/nv_5.svg
 
   fonts:
     - family: MalangBold
