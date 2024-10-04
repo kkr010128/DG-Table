@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart'; // flutter_svg 패키지 사용
+import 'package:dg_table/screens/appbar/appbar.dart';
+import 'package:dg_table/screens/navigationbar/navigationbar.dart';
+import 'package:dg_table/screens/main_task/my_bag.dart'; 
+import 'package:dg_table/screens/main_task/my_timetable.dart';
+import 'package:dg_table/screens/main_task/my_task.dart';
+import 'package:dg_table/screens/main_task/my_friends.dart';
+import 'package:dg_table/screens/main_task/campus_map.dart';
 
 void main() {
   runApp(const MainApp());
@@ -24,6 +30,16 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
+  // 선택한 인덱스에 따라 다른 페이지를 반환
+  static List<Widget> _pages = <Widget>[
+    MyBag(),
+    MyTimetable(),
+    MyTask(),
+    MyFriends(),
+    CampusMap(),
+    // 필요한 만큼 페이지 추가
+  ];
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -33,80 +49,12 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        foregroundColor: const Color(0xFF6E58FF),
-        title: const Text(
-          '학점가방',
-          style: TextStyle(fontFamily: 'MalangBold'),
-        ),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'Selected tab: $_selectedIndex',
-          style: const TextStyle(fontSize: 24),
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/images/nv_1.svg',
-              color: _selectedIndex == 0 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
-              width: 24,
-              height: 24,
-            ),
-            label: '내 가방',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/images/nv_2.svg',
-              color: _selectedIndex == 1 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
-              width: 24,
-              height: 24,
-            ),
-            label: '시간표',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/images/nv_3.svg',
-              color: _selectedIndex == 2 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
-              width: 24,
-              height: 24,
-            ),
-            label: '과제',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/images/nv_4.svg',
-              color: _selectedIndex == 3 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
-              width: 24,
-              height: 24,
-            ),
-            label: '친구',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/images/nv_5.svg',
-              color: _selectedIndex == 4 ? const Color(0xFF557BFF) : const Color(0xFF616C94),
-              width: 24,
-              height: 24,
-            ),
-            label: '캠퍼스맵',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: const Color(0xFF557BFF),
-        unselectedItemColor: const Color(0xFF616C94),
-        onTap: _onItemTapped,
-        selectedLabelStyle: const TextStyle(
-          fontFamily: 'MalangBold',  // 선택된 아이템의 라벨 스타일
-        ),
-        unselectedLabelStyle: const TextStyle(
-          fontFamily: 'MalangBold',  // 선택되지 않은 아이템의 라벨 스타일
-        ),
+      backgroundColor: Colors.white,
+      appBar: UnibagAppBar(),
+      body: _pages[_selectedIndex],  // 선택된 페이지를 body에 표시
+      bottomNavigationBar: UniBagNavigationBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
