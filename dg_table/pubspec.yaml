@@ -23,6 +23,7 @@ flutter:
     - assets/icon/nv_3.svg
     - assets/icon/nv_4.svg
     - assets/icon/nv_5.svg
+    - assets/image/
 
   fonts:
     - family: MalangBold
