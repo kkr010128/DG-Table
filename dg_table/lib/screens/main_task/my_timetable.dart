@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MyTimetable extends StatelessWidget {
   @override
@@ -6,7 +8,7 @@ class MyTimetable extends StatelessWidget {
     return Center(
       child: Container(
         margin: const EdgeInsets.all(10.0),
-        color: Colors.blue,
+        color: Colors.yellow,
         // width: 48.0,
         // height: 48.0,
       ),
