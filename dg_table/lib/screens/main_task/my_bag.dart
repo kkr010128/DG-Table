@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dg_table/screens/main_task/my_bag/next_lecture.dart'; // next_lecture.dart를 import
 import 'package:dg_table/screens/main_task/my_bag/my_task_calendar.dart'; // my_task_calendar.dart를 import
-import 'package:dg_table/screens/main_task/my_bag/my_task_info.dart';
+import 'package:dg_table/common/widgets/section_title.dart';
 
 class MyBag extends StatelessWidget {
   @override

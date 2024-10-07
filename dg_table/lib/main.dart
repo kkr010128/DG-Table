@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:dg_table/screens/appbar/appbar.dart';
-import 'package:dg_table/screens/navigationbar/navigationbar.dart';
+import 'package:dg_table/common/appbar/appbar.dart';
+import 'package:dg_table/common/navigationbar/navigationbar.dart';
 import 'package:dg_table/screens/main_task/my_bag.dart'; 
 import 'package:dg_table/screens/main_task/my_timetable.dart';
 import 'package:dg_table/screens/main_task/my_task.dart';
