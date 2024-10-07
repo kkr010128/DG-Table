@@ -8,8 +8,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 //       child: Column(
 //         mainAxisSize: MainAxisSize.max,
 //         children: [
-//           // 모듈화된 ClassContainer 사용
-//           ClassContainer(
+//           // 모듈화된 nextLectureContainer 사용
+//           nextLectureContainer(
 //             subject: '소프트웨어공학',
 //             time: '13:30',
 //             buttonText: '수업 정보',
@@ -22,13 +22,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 // }
 
 // 수업 정보를 출력하는 전체 컨테이너를 모듈화
-class ClassContainer extends StatelessWidget {
+class nextLectureContainer extends StatelessWidget {
   final String subject;
   final String time;
   final String buttonText;
   final String iconPath;
 
-  const ClassContainer({
+  const nextLectureContainer({
     required this.subject,
     required this.time,
     required this.buttonText,
