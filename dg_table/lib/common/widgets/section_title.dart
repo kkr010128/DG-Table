@@ -15,8 +15,8 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(20),
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: _MyTaskTitle(),
     );
   }
@@ -36,14 +36,14 @@ class SectionTitle extends StatelessWidget {
               onPressed: () {},
               child: Text(
                 "$redirectButton",
-                style: TextStyle(fontSize: 17, color: Colors.blue),
+                style: TextStyle(fontSize: 17, color: Color(0xFF5867EF)),
               ),
             ),
           ],
         ),
         Text(
           '$description',
-          style: TextStyle(fontSize: 12, color: Colors.grey),
+          style: TextStyle(fontSize: 14, color: Color(0xFF7D848D)),
         ),
       ],
     );
