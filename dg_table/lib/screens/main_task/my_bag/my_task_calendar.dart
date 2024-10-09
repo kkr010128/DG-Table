@@ -1,103 +1,101 @@
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 
-class TimelineCalendar extends StatelessWidget {
+class WeeklyCalendar extends StatelessWidget {
+  final List<Event> events = [
+    Event('SE 과제', DateTime(2024, 9, 29), DateTime(2024, 10, 2), Colors.lightBlue),
+    Event('봉사 신청', DateTime(2024, 9, 29), DateTime(2024, 9, 29), Colors.lightBlue[100]!),
+    Event('DS 보고서', DateTime(2024, 9, 30), DateTime(2024, 10, 2), Colors.red[100]!),
+    Event('DB 과제', DateTime(2024, 10, 3), DateTime(2024, 10, 5), Colors.red[200]!),
+    Event('NP 팀플', DateTime(2024, 10, 3), DateTime(2024, 10, 4), Colors.blue[200]!),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return SfCalendar(
-        view: CalendarView.timelineMonth,
-        dataSource: MeetingDataSource(getDataSource()),
-        monthViewSettings: MonthViewSettings(
-          showTrailingAndLeadingDates: false,
-          dayFormat: 'EEE',
+    return Column(
+      children: [
+        _buildWeekHeader(),
+        SizedBox(
+          height: 300, // 캘린더의 높이를 고정하거나 동적으로 조정 가능
+          child: SingleChildScrollView(
+            child: _buildEventRows(),
+          ),
         ),
-        timeSlotViewSettings: TimeSlotViewSettings(
-          timeIntervalHeight: calculateDynamicHeight(), // 동적으로 높이를 계산
-        ),
-        todayHighlightColor: Colors.grey,
-        headerStyle: CalendarHeaderStyle(
-          textAlign: TextAlign.center,
-          backgroundColor: Colors.transparent,
-          textStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-      );
+      ],
+    );
   }
 
-  // 일정 개수에 따라 동적으로 높이를 계산하는 함수
-  double calculateDynamicHeight() {
-    // 일정 데이터 기반으로 최대 일정 개수를 계산하여 높이 설정
-    List<Meeting> meetings = getDataSource();
-    int maxMeetings = 1;
-    Map<DateTime, int> meetingCounts = {};
+  Widget _buildWeekHeader() {
+    final List<String> days = ['일', '월', '화', '수', '목', '금', '토'];
+    final List<int> dates = List.generate(7, (index) => 29 + index);
 
-    for (var meeting in meetings) {
-      DateTime start = meeting.from;
-      DateTime end = meeting.to;
-      for (DateTime date = start; date.isBefore(end) || date.isAtSameMomentAs(end); date = date.add(Duration(days: 1))) {
-        if (meetingCounts.containsKey(date)) {
-          meetingCounts[date] = meetingCounts[date]! + 1;
-        } else {
-          meetingCounts[date] = 1;
-        }
-        maxMeetings = maxMeetings > meetingCounts[date]! ? maxMeetings : meetingCounts[date]!;
-      }
-    }
-
-    // 기본 높이 100을 기준으로 일정이 많을수록 높이를 증가
-    return maxMeetings * 50.0; // 일정 개수에 따라 동적으로 높이 결정
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: List.generate(7, (index) {
+        return Expanded(
+          child: Column(
+            children: [
+              Text(
+                days[index],
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: index == 0 ? Colors.red : (index == 6 ? Colors.blue : Colors.black),
+                ),
+              ),
+              Text(
+                '${dates[index]}',
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
+          ),
+        );
+      }),
+    );
   }
 
-  List<Meeting> getDataSource() {
-    final List<Meeting> meetings = <Meeting>[];
-    final DateTime today = DateTime.now();
-    
-    meetings.add(Meeting('SE 과제', today.add(Duration(days: 2)), today.add(Duration(days: 3)), Colors.lightBlue, true));
-    meetings.add(Meeting('DB 과제', today.add(Duration(days: 4)), today.add(Duration(days: 5)), Colors.red[200]!, true));
-    meetings.add(Meeting('봉사 신청', today, today.add(Duration(days: 1)), Colors.lightBlue[100]!, true));
-    meetings.add(Meeting('DS 보고서', today.add(Duration(days: 1)), today.add(Duration(days: 2)), Colors.red[100]!, true));
-    meetings.add(Meeting('NP 팀플', today.add(Duration(days: 5)), today.add(Duration(days: 6)), Colors.blue[200]!, true));
+  Widget _buildEventRows() {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final double dayWidth = constraints.maxWidth / 7;
 
-    return meetings;
+        return Column(
+          children: events.map((event) {
+            final int startOffset = event.startDate.difference(DateTime(2024, 9, 29)).inDays;
+            final int eventDuration = event.endDate.difference(event.startDate).inDays + 1;
+
+            return Container(
+              margin: EdgeInsets.symmetric(vertical: 2),
+              child: Row(
+                children: [
+                  SizedBox(width: dayWidth * (event.startDate.weekday % 7)),
+                  Container(
+                    width: dayWidth * eventDuration,
+                    height: 40.0,
+                    decoration: BoxDecoration(
+                      color: event.color,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      event.name,
+                      style: TextStyle(color: Colors.white, fontSize: 12),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }).toList(),
+        );
+      },
+    );
   }
 }
 
-class Meeting {
-  Meeting(this.eventName, this.from, this.to, this.background, this.isAllDay);
+class Event {
+  final String name;
+  final DateTime startDate;
+  final DateTime endDate;
+  final Color color;
 
-  String eventName;
-  DateTime from;
-  DateTime to;
-  Color background;
-  bool isAllDay;
-}
-
-class MeetingDataSource extends CalendarDataSource {
-  MeetingDataSource(List<Meeting> source) {
-    appointments = source;
-  }
-
-  @override
-  DateTime getStartTime(int index) {
-    return appointments![index].from;
-  }
-
-  @override
-  DateTime getEndTime(int index) {
-    return appointments![index].to;
-  }
-
-  @override
-  String getSubject(int index) {
-    return appointments![index].eventName;
-  }
-
-  @override
-  Color getColor(int index) {
-    return appointments![index].background;
-  }
-
-  @override
-  bool isAllDay(int index) {
-    return appointments![index].isAllDay;
-  }
+  Event(this.name, this.startDate, this.endDate, this.color);
 }

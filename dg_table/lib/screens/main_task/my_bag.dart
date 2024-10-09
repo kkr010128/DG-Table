@@ -18,11 +18,11 @@ class MyBag extends StatelessWidget {
             iconPath: 'assets/image/next_lecture_sym.svg',
           ),
           SectionTitle(
-            title: '📚이번주 과제 정보',
+            title: '📚 이번주 과제 정보',
             description:'수업 시간표와 과제를 등록하고 관리해보세요' ,
             redirectButton: '관리'),
           // TableCalendarScreen(),
-          TimelineCalendar(),
+          WeeklyCalendar(),
         ],
       ),
     );

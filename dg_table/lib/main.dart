@@ -39,6 +39,7 @@ class _MainPageState extends State<MainPage> {
     MyTask(),
     MyFriends(),
     CampusMap(),
+    // AppCalanderScreen(),
     // 필요한 만큼 페이지 추가
   ];
 
